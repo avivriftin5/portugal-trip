@@ -700,7 +700,7 @@ const ITEM_IMAGE = {
   'Bolt to Mouraria': IMG.mouraria,
   'Praça da República': IMG.tomarPraca,
   'Walk to the Nabão River · Parque do Mouchão · Ponte Velha': IMG.ponteVelha,
-  'Check in at Hotel Quinta das Lágrimas': IMG.quintaLagrimas,
+  'Check in at Hotel Vitória': IMG.coimbra,
   'Walk down through Coimbra old town': IMG.seVelha,
   'Dinner at Passaporte Coimbra': IMG.mondego,
   'Lunch en route': IMG.queijoSerra,
@@ -750,12 +750,12 @@ const STAYS = [
   },
   {
     city: 'Coimbra · 1 night',
-    name: 'Hotel Quinta das Lágrimas',
-    address: 'Coimbra',
+    name: 'Hotel Vitória',
+    address: 'Coimbra · Old Town',
     dates: 'May 16',
     image: IMG.coimbra,
-    details: 'Historic estate hotel set in the romantic gardens where the legend of Inês de Castro unfolded. One night after the Tomar & Coimbra day, before continuing north.',
-    perks: ['Historic gardens', 'Romantic estate setting', 'Convenient Coimbra base']
+    details: "In the heart of Coimbra's old town. Walking distance to the University, the Joanina Library, the Sé Velha cathedral and dinner at Passaporte — no taxi needed for any of the evening's plans. One night between Tomar and Porto.",
+    perks: ['Old town location', 'Walking distance to the University', 'Walking distance to dinner']
   },
   {
     city: 'Porto · 3 nights',
@@ -846,8 +846,8 @@ const DAYS = [
       { time: '', icon: 'sight', title: 'Synagogue of Tomar', short: "Portugal's oldest surviving medieval synagogue, built 1430–1460 · free entry.", details: 'Now the Abraham Zacuto Luso-Hebrew Museum. Small, atmospheric, deeply moving — the building survived because it was used as a granary, then a prison, after the expulsion. Reopens at 14:00. Open Tue-Sun 10:00-13:00 and 14:00-18:00 (May-Sep).', address: 'Rua Dr. Joaquim Jacinto 73', image: IMG.synagogue, duration: '30-40 min', cost: 'Free' },
       { time: '', icon: 'walk', title: 'Walk to the Nabão River · Parque do Mouchão · Ponte Velha', short: '1906 water wheel still spinning · island park · ancient bridge with castle above.', details: 'Through a small jardim to Parque do Mouchão. Right at the park entrance is a working 1906 water wheel still spinning today, water sloshing and cranking. Flat riverside park on an island in the river, shaded trees. Continue to Ponte Velha — the ancient bridge (Roman origins), one of the most beautiful spots in Tomar, with the Convento de Cristo visible on the hilltop directly above. Perfect moment to look back and take in the full scene.', duration: '20-25 min' },
       { time: '', icon: 'drive', title: 'Depart Tomar → Coimbra', short: '~1 hour, 80 km.' },
-      { time: '', icon: 'hotel', title: 'Check in at Hotel Quinta das Lágrimas', short: 'Coimbra · rest and freshen up.', details: 'Historic estate hotel in romantic gardens. The "Fountain of Tears" on the grounds is supposedly where Inês de Castro was murdered — her ghost still drifts here in the legend.', duration: '~25 min' },
-      { time: '', icon: 'taxi', title: 'Uber to University of Coimbra', short: '~8 min · drop off at the Ticket Office (Bilheteira) entrance.' },
+      { time: '', icon: 'hotel', title: 'Check in at Hotel Vitória', short: 'Coimbra old town · drop bags · freshen up.', details: 'Right in the old town. From here everything is on foot — the University, the Joanina, the Sé Velha, dinner at Passaporte. No taxi needed for the rest of the day.', duration: '~25 min' },
+      { time: '', icon: 'walk', title: 'Walk up to the University', short: 'Through the old town up to the Ticket Office (Bilheteira) entrance · ~10 min.', details: 'The University sits at the top of the old town. Take it slow uphill — the cobbled streets have handrails on the steeper bits. If anyone\'s low on energy, a taxi is 3 min.' },
       { time: '', icon: 'sight', title: 'University of Coimbra · Royal Palace + São Miguel + Academic Prison', short: 'Present ticket at entrance · all included · no fixed time slot.', details: 'Start with the Royal Palace (Palácio Real), the Chapel of São Miguel (organ pipes painted with chinoiserie), and the Academic Prison beneath the library. Booking ref: 1242617.', image: IMG.university, booked: true, duration: '~1h' },
       { time: '17:40', icon: 'sight', title: 'Joanina Library', short: 'BOOKED · entry 17:40 · arrive 5 min early at the Academic Prison entrance.', details: '~20 min inside the Noble Floor — three gilded Baroque halls, 60,000 volumes, resident bat colony that eats the bookworms at night. No photography allowed on the Noble Floor.', image: IMG.joanina, booked: true, duration: '~20 min' },
       { time: '', icon: 'walk', title: 'Walk down through Coimbra old town', short: 'Sé Nova → Machado de Castro → Sé Velha → Quebra Costas → Arco de Almedina → Rua Ferreira Borges.', details: 'A single continuous descent through medieval streets: (1) Sé Nova baroque façade with city views, (2) Museu Nacional Machado de Castro courtyard, (3) Sé Velha — the Romanesque fortress-church, (4) Rua Quebra Costas — the famous steep whitewashed stepped lane through the student quarter, take it slowly with handrails, (5) Arco de Almedina — the medieval gateway, (6) Rua Ferreira Borges — flat pedestrian shopping street. Allow ~45-50 min from university exit to restaurant.', duration: '45-50 min' },
@@ -1039,7 +1039,7 @@ const practicalCards = [
     title: '✓ Confirmed Bookings',
     items: [
       { name: 'Lisbon · Madalena Orquidea Living', detail: 'May 12-16 · 4 nights · keycode entry' },
-      { name: 'Coimbra · Hotel Quinta das Lágrimas', detail: 'May 16 · 1 night' },
+      { name: 'Coimbra · Hotel Vitória', detail: 'May 16 · 1 night · old town' },
       { name: 'Porto · Mouzinho Village River', detail: 'May 17-20 · 3 nights · parking included' },
       { name: 'Hertz car · Lisbon Airport', detail: 'May 16 pickup · May 20 return · request Via Verde' },
       { name: 'Sintra Tour · Eden Tison', detail: 'May 15 · 10:30-17:30 · €120/person · Hebrew-speaking guide' },

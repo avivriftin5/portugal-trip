@@ -452,6 +452,27 @@
     margin-bottom: 0.2rem;
   }
   .modal-stat-value { color: var(--ink); font-weight: 500; }
+  .modal-maps {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1.4rem;
+    padding: 0.75rem 1.3rem;
+    background: var(--azul);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(13, 59, 94, 0.18);
+  }
+  .modal-maps:hover {
+    background: var(--terracotta);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(196, 106, 58, 0.3);
+  }
   .modal-close {
     position: absolute;
     top: 1rem;
@@ -684,41 +705,145 @@ const IMG = {
   fonteFria: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Fonte_Fria.jpg/1280px-Fonte_Fria.jpg',
   bucacoPalace: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Pal%C3%A1cio_do_Bu%C3%A7aco_%285%29.jpg/1280px-Pal%C3%A1cio_do_Bu%C3%A7aco_%285%29.jpg',
   ginjinha: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Lisbon_A_Ginjinha_%2853092695977%29.jpg/1280px-Lisbon_A_Ginjinha_%2853092695977%29.jpg',
+  sabugueiro: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Vista_Geral_do_Sabugueiro1.jpg/1280px-Vista_Geral_do_Sabugueiro1.jpg',
+  torre: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Os_quatro_edif%C3%ADcios.jpg/1280px-Os_quatro_edif%C3%ADcios.jpg',
+  covao: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Cov%C3%A3o_d%27Ametade.jpg/1280px-Cov%C3%A3o_d%27Ametade.jpg',
+  seDoPorto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Porto%2C_S%C3%A9_do_Porto_%289%29.jpg/1280px-Porto%2C_S%C3%A9_do_Porto_%289%29.jpg',
+  miradouroVitoria: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Porto_-_49695163472.jpg/1280px-Porto_-_49695163472.jpg',
 };
 
 // Per-activity image lookup — used in the modal when an item has no inline image,
 // so each detailed activity gets its own matching photo (no day-hero fallback).
 const ITEM_IMAGE = {
+  // Day 0
   'Batya lands at Lisbon': IMG.airport,
   'Aviv & Dafna land at Lisbon': IMG.airport,
+  // Day 1
   'Santa Justa Lift': IMG.santaJusta,
   'Up Rua Augusta toward Rossio': IMG.ruaAugusta,
   'The Fantastic World of Portuguese Sardines': IMG.sardines,
   'Hospital de Bonecas (Doll Hospital)': IMG.dollHospital,
   'Rossio Square': IMG.rossio,
   'Lisbon Culinary Tour with Eating Europe': IMG.bifana,
+  // Day 2
   'Bolt to Mouraria': IMG.mouraria,
+  // Day 3
   'Praça da República': IMG.tomarPraca,
   'Walk to the Nabão River · Parque do Mouchão · Ponte Velha': IMG.ponteVelha,
   'Check in at Hotel Vitória': IMG.coimbra,
   'Walk down through Coimbra old town': IMG.seVelha,
   'Dinner at Passaporte Coimbra': IMG.mondego,
-  'Lunch en route': IMG.queijoSerra,
-  'Igreja de São Francisco': IMG.saoFrancisco,
-  'Gaia Cable Car DOWN to waterfront': IMG.gaiaCableCar,
+  // Day 4
+  'Arrive Sabugueiro · highest village in Portugal': IMG.sabugueiro,
+  'Drive to Torre summit (1,993m)': IMG.torre,
+  "Glacial valley · Covão d'Ametade": IMG.covao,
+  "🦶 Optional hike · Covão d'Ametade loop": IMG.covao,
+  'Walk down Mouzinho da Silveira to the Ribeira waterfront': IMG.ribeira,
+  'Dinner at Ribeira Square': IMG.luis,
+  // Day 5
+  'Breakfast at Castro · Atelier de Pastéis de Nata': IMG.pasteis,
+  'São Bento Station': IMG.saobento,
+  'Porto Cathedral · Sé do Porto': IMG.seDoPorto,
+  'Walk down to Ribeira · cross Dom Luís I Bridge (lower deck)': IMG.luis,
+  'Walk the Gaia riverfront (Cais de Gaia)': IMG.ribeira,
   'Lunch at Sancho Panza no Cais de Gaia': IMG.francesinha,
-  'Espaço Porto Cruz rooftop café': IMG.portoSkyline,
-  'Stroll Ribeira · walk up to Jardim da Cordoaria': IMG.ribeira,
-  'Rua das Flores': IMG.ruaFlores,
+  'Cable car UP to Jardim do Morro': IMG.gaiaCableCar,
+  'Bolt to Miradouro da Vitória': IMG.miradouroVitoria,
+  'Optional · Igreja de São Francisco': IMG.saoFrancisco,
   'SPIRITUS at Igreja dos Clérigos': IMG.clerigos,
+  // Day 6
   'Coffee + pastéis de nata in Peso da Régua': IMG.pesoRegua,
   'Pinhão village · azulejo train station': IMG.pinhao,
   'Miradouro de Casal de Loivos (492m)': IMG.casalLoivos,
+  // Day 7
   'Explore the forest': IMG.fonteFria,
   'Lunch on the Palace Hotel terrace': IMG.bucacoPalace,
   'Ginjinha in a chocolate cup': IMG.ginjinha,
   'Arrive Lisbon airport · return Hertz': IMG.airport,
   'Flight home': IMG.airport,
+};
+
+// Per-activity Google Maps query — used in the modal so each location has a tap-to-navigate link.
+// Items with an `address` field auto-generate a query and don't need an entry here.
+const ITEM_MAPS = {
+  // Day 0
+  'Batya lands at Lisbon': 'Humberto Delgado Airport, Lisbon',
+  'Taxi to Madalena Orquidea apartment': 'Rua da Madalena 97, Lisbon',
+  'Aviv & Dafna land at Lisbon': 'Humberto Delgado Airport, Lisbon',
+  'Arrive at apartment, meet Batya': 'Rua da Madalena 97, Lisbon',
+  // Day 1
+  'Walk to Praça do Comércio': 'Praça do Comércio, Lisbon',
+  'Taxi to Belém': 'Belém, Lisbon',
+  'Belém riverside walk': 'Belém, Lisbon',
+  'Pastéis de Belém': 'Pastéis de Belém, Lisbon',
+  'Jerónimos Monastery': 'Jerónimos Monastery, Lisbon',
+  'Lunch — Option A: Guelra': 'Guelra, Rua de Belém 35, Lisbon',
+  'Lunch — Option B: Discreto': 'Discreto, Arco Portas do Mar 9, Lisbon',
+  'Santa Justa Lift': 'Santa Justa Lift, Lisbon',
+  'Up Rua Augusta toward Rossio': 'Rua Augusta, Lisbon',
+  'Rossio Square': 'Praça Dom Pedro IV, Lisbon',
+  'Praça dos Restauradores': 'Praça dos Restauradores, Lisbon',
+  'Meet culinary tour guide': 'Praça dos Restauradores, Lisbon',
+  'Lisbon Culinary Tour with Eating Europe': 'Praça dos Restauradores, Lisbon',
+  // Day 2
+  'Pickup from apartment by Eden Tison': 'Rua da Madalena 97, Lisbon',
+  'Pena Palace, Sintra': 'Palácio da Pena, Sintra',
+  'Cascais — coastal town': 'Cascais, Portugal',
+  'Free time in Cascais — lunch': 'Cascais, Portugal',
+  'Cabo da Roca': 'Cabo da Roca, Portugal',
+  'Return to Lisbon · drop-off at apartment': 'Rua da Madalena 97, Lisbon',
+  'Freshen up at apartment': 'Rua da Madalena 97, Lisbon',
+  'Bolt to Mouraria': 'Largo da Severa, Lisbon',
+  'Fado dinner at Maria da Mouraria': 'Maria da Mouraria, Largo da Severa, Lisbon',
+  'Walk back downhill to apartment': 'Rua da Madalena 97, Lisbon',
+  // Day 3
+  'Bolt/Uber to Lisbon Airport': 'Humberto Delgado Airport, Lisbon',
+  'Collect Hertz car': 'Hertz, Lisbon Airport',
+  'Arrive Tomar — drive to Castle car park': 'Estacionamento Castelo de Tomar',
+  'Convento de Cristo (UNESCO)': 'Convento de Cristo, Tomar',
+  'Drive down to town · park at PE1 Praça da República': 'Praça da República, Tomar',
+  'Lunch — Café Paraíso or Taverna Antiqua': 'Café Paraíso, Tomar',
+  'Praça da República': 'Praça da República, Tomar',
+  'Walk to the Nabão River · Parque do Mouchão · Ponte Velha': 'Ponte Velha de Tomar',
+  'Check in at Hotel Vitória': 'Hotel Vitória, Rua da Sota 13, Coimbra',
+  'Up to the University': 'University of Coimbra',
+  'University of Coimbra · Royal Palace + São Miguel + Academic Prison': 'University of Coimbra',
+  'Joanina Library': 'Biblioteca Joanina, Coimbra',
+  'Walk down through Coimbra old town': 'Sé Velha, Coimbra',
+  // Day 4
+  'Arrive Sabugueiro · highest village in Portugal': 'Sabugueiro, Seia, Portugal',
+  'Drive to Torre summit (1,993m)': 'Torre, Serra da Estrela',
+  "Glacial valley · Covão d'Ametade": "Covão d'Ametade, Manteigas",
+  "🦶 Optional hike · Covão d'Ametade loop": "Covão d'Ametade, Manteigas",
+  'Arrive Porto · check in at Mouzinho Village River': 'Mouzinho Village River, Porto',
+  'Walk down Mouzinho da Silveira to the Ribeira waterfront': 'Cais da Ribeira, Porto',
+  // Day 5
+  'São Bento Station': 'Estação de São Bento, Porto',
+  'Porto Cathedral · Sé do Porto': 'Sé do Porto, Porto',
+  'Walk down to Ribeira · cross Dom Luís I Bridge (lower deck)': 'Dom Luís I Bridge, Porto',
+  'Walk the Gaia riverfront (Cais de Gaia)': 'Cais de Gaia, Vila Nova de Gaia',
+  'Walk to Teleférico de Gaia · Estação Cais de Gaia': 'Teleférico de Gaia, Estação Cais de Gaia',
+  'Cable car UP to Jardim do Morro': 'Jardim do Morro, Vila Nova de Gaia',
+  'Bolt to Miradouro da Vitória': 'Miradouro da Vitória, Porto',
+  'SPIRITUS at Igreja dos Clérigos': 'Torre dos Clérigos, Porto',
+  // Day 6
+  'Coffee + pastéis de nata in Peso da Régua': 'Peso da Régua, Portugal',
+  'Optional: Douro Museum (Museu do Douro)': 'Museu do Douro, Peso da Régua',
+  'Pinhão village · azulejo train station': 'Pinhão Railway Station',
+  'Pre-arranged taxi up to Casal de Loivos': 'Miradouro de Casal de Loivos',
+  'Miradouro de Casal de Loivos (492m)': 'Miradouro de Casal de Loivos',
+  'Arrive Porto · freshen up at hotel': 'Mouzinho Village River, Porto',
+  '🎂 Birthday Dinner · Antiqvvm': 'Antiqvvm, Porto',
+  // Day 7
+  'Check out of hotel · load car': 'Mouzinho Village River, Porto',
+  'Mata Nacional do Buçaco': 'Mata Nacional do Buçaco',
+  'Explore the forest': 'Mata Nacional do Buçaco',
+  'Lunch on the Palace Hotel terrace': 'Palace Hotel do Buçaco',
+  'Arrive Óbidos · medieval walled town': 'Óbidos, Portugal',
+  'Walk the town walls · explore cobblestone streets and castle': 'Castelo de Óbidos',
+  'Ginjinha in a chocolate cup': 'Óbidos, Portugal',
+  'Arrive Lisbon airport · return Hertz': 'Humberto Delgado Airport, Lisbon',
+  'Check in · security · relax': 'Humberto Delgado Airport, Lisbon',
 };
 
 const ICONS = {
@@ -751,11 +876,11 @@ const STAYS = [
   {
     city: 'Coimbra · 1 night',
     name: 'Hotel Vitória',
-    address: 'Coimbra · Old Town',
+    address: 'Rua da Sota 13, Coimbra',
     dates: 'May 16',
     image: IMG.coimbra,
-    details: "In the heart of Coimbra's old town. Walking distance to the University, the Joanina Library, the Sé Velha cathedral and dinner at Passaporte — no taxi needed for any of the evening's plans. One night between Tomar and Porto.",
-    perks: ['Old town location', 'Walking distance to the University', 'Walking distance to dinner']
+    details: "Rua da Sota 13, in the heart of Coimbra's old town (rated 4.4). Walking distance to dinner at Passaporte and the Sé Velha cathedral; the University is a 15-min uphill walk or a 5-min Bolt away. One night between Tomar and Porto.",
+    perks: ['Old town · Rua da Sota 13', 'Walking distance to dinner', '5-min Bolt to the University']
   },
   {
     city: 'Porto · 3 nights',
@@ -846,8 +971,8 @@ const DAYS = [
       { time: '', icon: 'sight', title: 'Synagogue of Tomar', short: "Portugal's oldest surviving medieval synagogue, built 1430–1460 · free entry.", details: 'Now the Abraham Zacuto Luso-Hebrew Museum. Small, atmospheric, deeply moving — the building survived because it was used as a granary, then a prison, after the expulsion. Reopens at 14:00. Open Tue-Sun 10:00-13:00 and 14:00-18:00 (May-Sep).', address: 'Rua Dr. Joaquim Jacinto 73', image: IMG.synagogue, duration: '30-40 min', cost: 'Free' },
       { time: '', icon: 'walk', title: 'Walk to the Nabão River · Parque do Mouchão · Ponte Velha', short: '1906 water wheel still spinning · island park · ancient bridge with castle above.', details: 'Through a small jardim to Parque do Mouchão. Right at the park entrance is a working 1906 water wheel still spinning today, water sloshing and cranking. Flat riverside park on an island in the river, shaded trees. Continue to Ponte Velha — the ancient bridge (Roman origins), one of the most beautiful spots in Tomar, with the Convento de Cristo visible on the hilltop directly above. Perfect moment to look back and take in the full scene.', duration: '20-25 min' },
       { time: '', icon: 'drive', title: 'Depart Tomar → Coimbra', short: '~1 hour, 80 km.' },
-      { time: '', icon: 'hotel', title: 'Check in at Hotel Vitória', short: 'Coimbra old town · drop bags · freshen up.', details: 'Right in the old town. From here everything is on foot — the University, the Joanina, the Sé Velha, dinner at Passaporte. No taxi needed for the rest of the day.', duration: '~25 min' },
-      { time: '', icon: 'walk', title: 'Walk up to the University', short: 'Through the old town up to the Ticket Office (Bilheteira) entrance · ~10 min.', details: 'The University sits at the top of the old town. Take it slow uphill — the cobbled streets have handrails on the steeper bits. If anyone\'s low on energy, a taxi is 3 min.' },
+      { time: '', icon: 'hotel', title: 'Check in at Hotel Vitória', short: 'Rua da Sota 13 · Coimbra old town (4.4★) · drop bags, freshen up.', details: 'Old town location. Walking distance to dinner at Passaporte and the Sé Velha. The University is 15-min walk uphill or 5-min Bolt away.', duration: '~25 min' },
+      { time: '', icon: 'walk', title: 'Up to the University', short: 'Walk up (~15 min, steep through the upper-town lanes) or Bolt/taxi (~5 min, ~€4) · drop at the Ticket Office (Bilheteira) entrance.', details: 'Two ways from Hotel Vitória to the university: (A) Walk up — atmospheric through the upper-town lanes, ~15 min, steep, good shoes essential. (B) Bolt or taxi — ~5 min, ~€4, drops you right at the Ticket Office (Bilheteira) entrance. Recommended for Batya after the long driving day.' },
       { time: '', icon: 'sight', title: 'University of Coimbra · Royal Palace + São Miguel + Academic Prison', short: 'Present ticket at entrance · all included · no fixed time slot.', details: 'Start with the Royal Palace (Palácio Real), the Chapel of São Miguel (organ pipes painted with chinoiserie), and the Academic Prison beneath the library. Booking ref: 1242617.', image: IMG.university, booked: true, duration: '~1h' },
       { time: '17:40', icon: 'sight', title: 'Joanina Library', short: 'BOOKED · entry 17:40 · arrive 5 min early at the Academic Prison entrance.', details: '~20 min inside the Noble Floor — three gilded Baroque halls, 60,000 volumes, resident bat colony that eats the bookworms at night. No photography allowed on the Noble Floor.', image: IMG.joanina, booked: true, duration: '~20 min' },
       { time: '', icon: 'walk', title: 'Walk down through Coimbra old town', short: 'Sé Nova → Machado de Castro → Sé Velha → Quebra Costas → Arco de Almedina → Rua Ferreira Borges.', details: 'A single continuous descent through medieval streets: (1) Sé Nova baroque façade with city views, (2) Museu Nacional Machado de Castro courtyard, (3) Sé Velha — the Romanesque fortress-church, (4) Rua Quebra Costas — the famous steep whitewashed stepped lane through the student quarter, take it slowly with handrails, (5) Arco de Almedina — the medieval gateway, (6) Rua Ferreira Borges — flat pedestrian shopping street. Allow ~45-50 min from university exit to restaurant.', duration: '45-50 min' },
@@ -857,36 +982,39 @@ const DAYS = [
   // ============ DAY 4 ============
   {
     n: 4, date: 'Sun, May 17', dow: 'Sun', city: 'Coimbra → Porto', title: 'Serra da Estrela to Porto',
-    image: IMG.serra, pace: 'Driving', tags: ['drive day', 'mountains'],
-    summary: 'Long drive day. Mountain detour through Serra da Estrela, then north to Porto for evening arrival and check-in. Tomorrow is Porto walking day.',
-    warning: '<strong>Weather check:</strong> Serra da Estrela weather is highly changeable. Check the forecast the evening before from the Coimbra hotel — if conditions are bad, the mountain section can be moved or shortened.',
+    image: IMG.serra, pace: 'Scenic', tags: ['mountains', 'optional hike', 'Ribeira evening'],
+    summary: "Mountain morning through Serra da Estrela — Sabugueiro village, the Torre summit, the glacial valley at Covão d'Ametade (with optional easy hike), then lunch in Manteigas. Afternoon drive to Porto, evening walk down to the Ribeira waterfront for dinner by the river.",
+    warning: '<strong>Weather check:</strong> Serra da Estrela weather is highly changeable. Check the forecast the evening before from the Coimbra hotel — if conditions are bad, the mountain section can be moved or shortened. In May the snow may still be on the Torre peak.',
     items: [
-      { time: '', icon: 'drive', title: 'Depart Coimbra for Serra da Estrela', short: 'A17/IP3 motorway · ~1.5 hrs to Sabugueiro · scenery becomes dramatic past the motorway exit.', details: 'The drive itself is mostly flat inland road, nothing special to stop for — until you leave the motorway and start climbing toward Sabugueiro, where the scenery turns alpine.', duration: '~1.5h' },
-      { time: '', icon: 'view', title: 'Serra da Estrela mountain landscape', short: "Portugal's highest mainland peaks · alpine villages · stone shepherds' huts.", details: 'Stop where you like. Sabugueiro is the highest village in mainland Portugal. Bring layers — it can be 15° colder than Coimbra at the top.', image: IMG.serra },
-      { time: '', icon: 'food', title: 'Lunch en route', short: 'Mountain village or motorway stop, depending on weather and time.', details: 'Local mountain food: queijo da Serra, smoked ham, hearty soups. Or simpler if you\'re moving fast.' },
-      { time: '', icon: 'drive', title: 'Drive to Porto', short: 'A25 → A1 north · ~2.5 hours total to Porto.', details: 'Cross to the A1 and head north. The scenery flattens but the drive is easy.', duration: '~2.5h' },
-      { time: '', icon: 'hotel', title: 'Arrive Porto · check in at Mouzinho Village River', short: 'Park the car · settle in · the city is yours tomorrow.', details: 'Parking is included at the hotel. Check in, drop bags, decide whether you have energy to wander.' },
-      { time: '', icon: 'food', title: 'Casual dinner near hotel', short: 'Keep it simple — tomorrow is the big Porto walking day.', details: 'A neighbourhood restaurant, an early bedtime. The full Porto experience starts in the morning.' },
+      { time: '', icon: 'view', title: 'Arrive Sabugueiro · highest village in Portugal', short: 'Stone houses at 1,050m · local cheese & wool shops · queijo da Serra.', details: 'Drive east from Coimbra into the Serra da Estrela mountains (~1.5 hrs). Sabugueiro is a charming Serra da Estrela village. Try the queijo da Serra — the famous soft mountain cheese — at one of the small shops. Bring layers, it can be 15° colder than Coimbra.', duration: '~30 min' },
+      { time: '', icon: 'view', title: 'Drive to Torre summit (1,993m)', short: 'Highest point in continental Portugal · views in every direction · café and souvenir shop at the top.', details: 'Drive up to the summit. In May the snow may still be on the peaks. Small café and souvenir shop at the top. Allow 20–30 min.', duration: '~30 min' },
+      { time: '', icon: 'view', title: "Glacial valley · Covão d'Ametade", short: "Ancient glacial basin at 1,500m · silver birch forest · Zêzere river · granite cliffs.", details: "Drive down through the glacial valley along N338. Stop at the Covão d'Ametade parking area. Flat open terrain, granite cliffs rising on all sides. Beautiful in mid-May with fresh green birches." },
+      { time: '', icon: 'walk', title: "🦶 Optional hike · Covão d'Ametade loop", short: 'Easy 1km loop · 22m elevation · 30–60 min · birch forest along the Zêzere river.', details: 'Decide on the spot. AllTrails Easy. Flat, well-marked path through birch forest along the Zêzere river. No gear needed beyond comfortable shoes. Can extend upstream to two small glacial lakes for ~1.5 hrs total if everyone is happy. No booking, no cost. If you do the hike, lunch in Manteigas shifts later.', duration: '30–60 min' },
+      { time: '', icon: 'food', title: 'Lunch at Duval, Manteigas', short: 'Top spot in Manteigas · 4.5★ from 1,270 reviews · outdoor hillside seating · mountain comfort food.', details: 'Casual and warm, outdoor seating on the hillside. Mountain comfort food. Open Sun 12:00–15:00 ✅.', address: 'N232, Manteigas', booking: 'Call ahead: +351 968 743 857', rating: '4.5★' },
+      { time: '', icon: 'drive', title: 'Depart Manteigas → Porto', short: 'A25/A1 · ~2.5 hours.', duration: '~2.5h' },
+      { time: '', icon: 'hotel', title: 'Arrive Porto · check in at Mouzinho Village River', short: 'Park in the hotel garage · settle in · freshen up before walking down to the river.', details: 'Parking is included. Check in, drop bags, freshen up before walking down to the Ribeira for first impressions and dinner.' },
+      { time: '', icon: 'walk', title: 'Walk down Mouzinho da Silveira to the Ribeira waterfront', short: 'All downhill · ~18 min straight to Cais da Ribeira · first impression of Porto.', details: 'Walk south on Rua de Mouzinho da Silveira straight to the waterfront. Cais da Ribeira, Dom Luís I Bridge overhead, Gaia bank across the river. Take it in slowly. Return after dinner by Bolt (~5 min, ~€4–5).', duration: '~18 min' },
+      { time: '', icon: 'food', title: 'Dinner at Ribeira Square', short: "Right on the waterfront square · 4.7★ from 3,200+ reviews · garlic prawns, seafood rice, black pasta.", details: 'Relaxed riverside atmosphere on Praça Ribeira. Open Sundays from 18:00. Arrive around 19:00 before it fills up.', address: 'Praça Ribeira 16, Porto', rating: '4.7★' },
     ]
   },
   // ============ DAY 5 ============
   {
     n: 5, date: 'Mon, May 18', dow: 'Mon', city: 'Porto', title: 'Porto Walking Day · SPIRITUS',
     image: IMG.porto, pace: 'Active', tags: ['walking day', 'SPIRITUS show'],
-    summary: 'Clérigos, São Bento, São Francisco, Dom Luís bridge, Gaia waterfront, francesinha lunch, rooftop port views, Rua das Flores, then SPIRITUS light show inside Clérigos and dinner at Cantina 32.',
+    summary: 'Pastéis de nata breakfast, São Bento azulejos, the Sé do Porto cathedral terrace, then down to the river and across to Gaia for francesinha lunch. Cable car up to Jardim do Morro and over to the Miradouro da Vitória. SPIRITUS light show at Clérigos in the evening, dinner at Cantina 32.',
     items: [
-      { time: '', icon: 'sight', title: 'Igreja dos Clérigos', short: 'Iconic 75m Baroque tower · exterior + square free · 240-step climb €5.', details: 'The church exterior and square are free. If energy allows, the 240 steps to the top reward you with panoramic views over Porto.', image: IMG.clerigos, cost: '€5 to climb', duration: '~30 min' },
-      { time: '', icon: 'sight', title: 'São Bento Station', short: '20,000 azulejo tiles depicting Portuguese history · stunning · free.', details: '10 min walk downhill from Clérigos. The entrance hall is one of the most beautiful train station interiors in the world.', image: IMG.saobento, cost: 'Free', duration: '20 min' },
-      { time: '', icon: 'sight', title: 'Igreja de São Francisco', short: "Gothic exterior hides one of Portugal's most extraordinary Baroque interiors.", details: 'Every surface inside is covered in gilded carved wood — they say half a ton of gold leaf. It is overwhelming.', address: 'Rua do Infante Dom Henrique', cost: '~€5', duration: '45 min' },
-      { time: '', icon: 'walk', title: 'Walk to Ribeira · cross Dom Luís I Bridge (upper deck)', short: 'Walk across with the tram tracks · panoramic bird\'s-eye views of Douro and both cities.', details: 'Optional: take the Funicular dos Guindais (€4/person) from the lower station near the bridge — a vintage funicular climbing the cliff face. For now, cross the upper deck for the iconic view.', image: IMG.luis, cost: '€4 funicular optional' },
-      { time: '', icon: 'view', title: 'Gaia Cable Car DOWN to waterfront', short: '€6/person one way · ~3 min ride · spectacular aerial views.', details: 'Arrive at Cais de Gaia — the Gaia waterfront strip facing the Porto skyline.', cost: '€6/person', duration: '3 min' },
-      { time: '', icon: 'food', title: 'Lunch at Sancho Panza no Cais de Gaia', short: 'Right on the Gaia waterfront · Porto skyline across the river · share a francesinha.', details: 'Spacious and relaxed. Try the francesinha — share one between two, very filling. Open Mon from 12:00 ✅.', address: 'Av. de Ramos Pinto 250', duration: '~1h' },
-      { time: '', icon: 'view', title: 'Espaço Porto Cruz rooftop café', short: '4th floor · outstanding panoramic views over the Douro and Porto skyline.', details: 'Coffee or drinks, no need to book. 5 min walk west along the Gaia waterfront.', address: 'Largo Miguel Bombarda 23', duration: '~30-40 min' },
-      { time: '', icon: 'walk', title: 'Cross back to Porto · lower deck of Dom Luís I Bridge', short: 'Pedestrian, river-level · different perspective from the upper deck.', details: 'Arrive in Ribeira — the medieval river quarter, UNESCO listed, all colour-washed houses on the water.' },
-      { time: '', icon: 'view', title: 'Stroll Ribeira · walk up to Jardim da Cordoaria', short: 'Beautiful garden with ancient twisted trees, sculptures and a lake · 3 min from Clérigos.', details: 'Sit, relax, recover. The trees here are extraordinary — pollarded plane trees, almost sculptural.' },
-      { time: '', icon: 'walk', title: 'Rua das Flores', short: "Porto's most beautiful pedestrian street · tiled facades, independent shops.", details: 'Browse slowly toward Clérigos for the show.' },
+      { time: '', icon: 'food', title: 'Breakfast at Castro · Atelier de Pastéis de Nata', short: '2 min walk from hotel · 4.8★ from 4,300+ reviews · watch pastéis made fresh through the glass window.', details: 'Extraordinary custard tarts, excellent coffee. ~€5–8/person. If you want something more substantial, Flora Porto on the same street (opens 8:00, 4.7★) does eggs Benedict and brunch.', address: 'Rua de Mouzinho da Silveira 61, Porto', cost: '€5-8/person', rating: '4.8★' },
+      { time: '', icon: 'sight', title: 'São Bento Station', short: '20,000 azulejo tiles depicting Portuguese history · stunning · free.', details: '10 min walk from hotel. The entrance hall is one of the most beautiful train station interiors in the world.', cost: 'Free', duration: '~20 min' },
+      { time: '', icon: 'sight', title: 'Porto Cathedral · Sé do Porto', short: "Wide terrace with one of Porto's finest viewpoints · birthplace of the city · free.", details: 'Short uphill walk from São Bento. The terrace looks out over the old streets, the Douro and the Gaia bank — one of Porto\'s great viewpoints. Free to visit the terrace.', cost: 'Free terrace', duration: '~15 min' },
+      { time: '', icon: 'walk', title: 'Walk down to Ribeira · cross Dom Luís I Bridge (lower deck)', short: 'Old lanes descend steeply past colourful houses · cross the bridge at river level (~10 min) to Vila Nova de Gaia.', details: 'The descent from the cathedral is steep — take it slow. Cross the lower deck of Dom Luís I Bridge for the river-level perspective.', duration: '~20 min' },
+      { time: '', icon: 'view', title: 'Walk the Gaia riverfront (Cais de Gaia)', short: 'Rabelo boats moored along the bank · wine lodge facades · views back across to Porto.', details: 'Walk west along the Gaia riverfront. Rabelo boats are the traditional wooden boats that transported Port wine barrels down the Douro. A very beautiful stretch.', duration: '~30 min' },
+      { time: '', icon: 'food', title: 'Lunch at Sancho Panza no Cais de Gaia', short: 'Right on the Gaia waterfront · Porto skyline across the river · share a francesinha.', details: "Spacious and relaxed. Try the francesinha — Porto's iconic sandwich, share one between two, very filling. Open Mondays from 12:00 ✅.", address: 'Av. de Ramos Pinto 250, Vila Nova de Gaia', duration: '~1h' },
+      { time: '', icon: 'walk', title: 'Walk to Teleférico de Gaia · Estação Cais de Gaia', short: '~6 min walk, 450m along the riverfront to the lower cable car station.' },
+      { time: '', icon: 'view', title: 'Cable car UP to Jardim do Morro', short: '€6/person · 5 min ride · spectacular aerial views of the Douro, Dom Luís I Bridge, Porto skyline, Clérigos tower.', details: 'Buy tickets at the lower station. The cable car climbs from the Gaia waterfront up to Jardim do Morro on the upper Gaia ridge.', cost: '€6/person', duration: '5 min' },
+      { time: '', icon: 'view', title: 'Bolt to Miradouro da Vitória', short: "~5 min ride · Porto's most breathtaking viewpoint · old Jewish quarter.", details: 'Panoramic views of the river, bridge, cathedral, Clérigos tower and the Gaia riverbank — set in the old Jewish quarter.' },
+      { time: '', icon: 'sight', title: 'Optional · Igreja de São Francisco', short: '10 min walk downhill from Miradouro · gilded Baroque interior · ~€5 · 45 min. Skip if tired.', details: "Gothic exterior hides one of Portugal's most extraordinary Baroque interiors — every surface covered in gilded carved wood. If you're tired, take a Bolt back to the hotel to rest before the show.", address: 'Rua do Infante Dom Henrique, Porto', cost: '~€5', duration: '~45 min' },
       { time: '18:45', icon: 'show', title: 'SPIRITUS at Igreja dos Clérigos', short: 'BOOKED · 35-min immersive light & sound show projected on the church interior · arrive 15 min early, sit as far back as possible.', details: 'Extraordinary 35-min immersive light and sound show. The church interior becomes the canvas. No photography during the show.', cost: '~€10/person', duration: '35 min', booked: true },
-      { time: '', icon: 'food', title: 'Dinner at Cantina 32', short: '4.3★ from 3,400+ reviews · industrial-chic · octopus, tiger prawns, steak.', details: 'Unique industrial-chic interior, excellent octopus, legendary tiger prawns, good steak. Lively and atmospheric. Open Mondays ✅. 5 min walk from Clérigos.', address: 'Rua das Flores 32', booking: '+351 22 203 9069 or TheFork', duration: '~2h' },
+      { time: '', icon: 'food', title: 'Dinner at Cantina 32', short: '4.3★ from 3,400+ reviews · industrial-chic · octopus, tiger prawns, steak.', details: 'Unique industrial-chic interior, excellent octopus, legendary tiger prawns, good steak. Lively and atmospheric. Open Mondays ✅. 5 min walk from Clérigos.', address: 'Rua das Flores 32, Porto', booking: '+351 22 203 9069 or TheFork', duration: '~2h' },
     ]
   },
   // ============ DAY 6 ============
@@ -1039,7 +1167,7 @@ const practicalCards = [
     title: '✓ Confirmed Bookings',
     items: [
       { name: 'Lisbon · Madalena Orquidea Living', detail: 'May 12-16 · 4 nights · keycode entry' },
-      { name: 'Coimbra · Hotel Vitória', detail: 'May 16 · 1 night · old town' },
+      { name: 'Coimbra · Hotel Vitória', detail: 'May 16 · 1 night · Rua da Sota 13, old town' },
       { name: 'Porto · Mouzinho Village River', detail: 'May 17-20 · 3 nights · parking included' },
       { name: 'Hertz car · Lisbon Airport', detail: 'May 16 pickup · May 20 return · request Via Verde' },
       { name: 'Sintra Tour · Eden Tison', detail: 'May 15 · 10:30-17:30 · €120/person · Hebrew-speaking guide' },
@@ -1055,6 +1183,8 @@ const practicalCards = [
   {
     title: '☐ Still To Book',
     items: [
+      { name: 'Duval, Manteigas', detail: 'May 17 mountain lunch · call ahead +351 968 743 857' },
+      { name: 'Ribeira Square, Porto', detail: 'May 17 dinner · open Sun from 18:00 · arrive ~19:00' },
       { name: 'Cantina 32 Porto', detail: 'May 18 dinner · +351 22 203 9069 or TheFork' },
       { name: 'ÓPorco Wine & Tapas, Pinhão', detail: 'May 19 birthday lunch · +351 254 096 760' },
       { name: 'Taxis do Douro, Pinhão', detail: 'May 19 · round-trip Casal de Loivos · +351 964 440 235' },
@@ -1121,6 +1251,9 @@ function openItemModal(dayN, idx) {
   const day = DAYS.find(d => d.n === dayN);
   const item = day.items[idx];
   const itemImage = item.image || ITEM_IMAGE[item.title];
+  let mapsTarget = ITEM_MAPS[item.title] || (item.address ? `${item.title}, ${item.address}` : null);
+  if (mapsTarget && !/Portugal/i.test(mapsTarget)) mapsTarget += ', Portugal';
+  const mapsUrl = mapsTarget ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsTarget)}` : null;
   let html = '';
   if (itemImage) {
     html += `<img class="modal-img" src="${itemImage}" alt="${item.title}" />`;
@@ -1129,6 +1262,7 @@ function openItemModal(dayN, idx) {
     <div class="modal-time">${item.time ? item.time + ' · ' : ''}Day ${day.n} · ${day.date}</div>
     <h3>${ICONS[item.icon] || ''} ${item.title}</h3>
     <div class="modal-short">${item.short || ''}</div>
+    ${mapsUrl ? `<a class="modal-maps" href="${mapsUrl}" target="_blank" rel="noopener">📍 Open in Google Maps</a>` : ''}
     ${item.details ? `<div class="modal-details">${item.details}</div>` : ''}
     ${item.warning ? `<div class="day-warning"><strong>Note:</strong> ${item.warning}</div>` : ''}
     <div class="modal-grid">
@@ -1146,12 +1280,15 @@ function openItemModal(dayN, idx) {
 }
 
 function openStayModal(s) {
+  const stayTarget = `${s.name}, ${s.address.replace(/[·]/g, ',')}, Portugal`;
+  const stayMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(stayTarget)}`;
   modalContent.innerHTML = `
     <img class="modal-img" src="${s.image}" alt="${s.name}" />
     <div class="modal-body">
       <div class="modal-time">${s.city}</div>
       <h3>🏨 ${s.name}</h3>
       <div class="modal-short">${s.dates} · ${s.address}</div>
+      <a class="modal-maps" href="${stayMapsUrl}" target="_blank" rel="noopener">📍 Open in Google Maps</a>
       <div class="modal-details">${s.details}</div>
       <div style="margin-top:1rem;">
         ${s.perks.map(p => `<span class="meta-chip" style="display:inline-block;margin:0.2rem 0.3rem 0.2rem 0;">${p}</span>`).join('')}

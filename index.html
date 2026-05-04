@@ -718,6 +718,7 @@ const ITEM_IMAGE = {
   // Day 0
   'Batya lands at Lisbon': IMG.airport,
   'Aviv & Dafna land at Lisbon': IMG.airport,
+  'Private transfer with Menzel Travel': IMG.airport,
   // Day 1
   'Santa Justa Lift': IMG.santaJusta,
   'Up Rua Augusta toward Rossio': IMG.ruaAugusta,
@@ -753,8 +754,8 @@ const ITEM_IMAGE = {
   'SPIRITUS at Igreja dos Clérigos': IMG.clerigos,
   // Day 6
   'Coffee + pastéis de nata in Peso da Régua': IMG.pesoRegua,
-  'Pinhão village · azulejo train station': IMG.pinhao,
-  'Miradouro de Casal de Loivos (492m)': IMG.casalLoivos,
+  'Arrive Pinhão · azulejo station + riverfront': IMG.pinhao,
+  'Option B · Favaios · hilltop village (Moscatel wine country)': IMG.casalLoivos,
   // Day 7
   'Explore the forest': IMG.fonteFria,
   'Lunch on the Palace Hotel terrace': IMG.bucacoPalace,
@@ -770,6 +771,7 @@ const ITEM_MAPS = {
   'Batya lands at Lisbon': 'Humberto Delgado Airport, Lisbon',
   'Taxi to Madalena Orquidea apartment': 'Rua da Madalena 97, Lisbon',
   'Aviv & Dafna land at Lisbon': 'Humberto Delgado Airport, Lisbon',
+  'Private transfer with Menzel Travel': 'Humberto Delgado Airport, Lisbon',
   'Arrive at apartment, meet Batya': 'Rua da Madalena 97, Lisbon',
   // Day 1
   'Walk to Praça do Comércio': 'Praça do Comércio, Lisbon',
@@ -828,10 +830,12 @@ const ITEM_MAPS = {
   'SPIRITUS at Igreja dos Clérigos': 'Torre dos Clérigos, Porto',
   // Day 6
   'Coffee + pastéis de nata in Peso da Régua': 'Peso da Régua, Portugal',
-  'Optional: Douro Museum (Museu do Douro)': 'Museu do Douro, Peso da Régua',
-  'Pinhão village · azulejo train station': 'Pinhão Railway Station',
-  'Pre-arranged taxi up to Casal de Loivos': 'Miradouro de Casal de Loivos',
-  'Miradouro de Casal de Loivos (492m)': 'Miradouro de Casal de Loivos',
+  'Arrive Pinhão · azulejo station + riverfront': 'Pinhão Railway Station',
+  'Option A · Rabelo boat river cruise from Pinhão': 'Cais Fluvial do Pinhão, Pinhão',
+  'Option A · 🎂 Birthday lunch — ÓPorco Wine & Tapas Bar': 'ÓPorco Wine & Tapas Bar, Rua António Manuel Saraiva 65A, Pinhão',
+  'Option B · Scenic drive · N322-3 toward Vale de Mendiz': 'Vale de Mendiz, Portugal',
+  'Option B · Favaios · hilltop village (Moscatel wine country)': 'Favaios, Alijó, Portugal',
+  'Option B · 🎂 Birthday lunch at Favaios village square': 'Favaios, Alijó, Portugal',
   'Arrive Porto · freshen up at hotel': 'Mouzinho Village River, Porto',
   '🎂 Birthday Dinner · Antiqvvm': 'Antiqvvm, Porto',
   // Day 7
@@ -905,7 +909,8 @@ const DAYS = [
       { time: '', icon: 'taxi', title: 'Taxi to Madalena Orquidea apartment', short: 'Apartment booked from May 12 — keycode entry, no waiting.', details: 'Rua da Madalena 97. The keycode means Batya can walk straight in and rest after the long flight.', cost: '~€15-20' },
       { time: '', icon: 'walk', title: 'Rest, relax, explore at own pace', short: 'No agenda. The neighbourhood is in the heart of Baixa.', details: 'Wander the apartment\'s street, find a café, recover from the flight. Save energy for tomorrow.' },
       { time: '21:00', icon: 'flight', title: 'Aviv & Dafna land at Lisbon', short: 'Tel Aviv → Lisbon. Same EES queue as Batya — 2–4 hours.', details: 'Pre-register on the "Travel to Europe" app before flying. Realistically, expect to be out of the airport around 23:00.' },
-      { time: '', icon: 'taxi', title: 'Arrive at apartment, meet Batya', short: 'Late arrival after EES delays + taxi.', details: 'Whole family together for the first time on the trip. After the queue and the flight you will all be exhausted.' },
+      { time: '', icon: 'taxi', title: 'Private transfer with Menzel Travel', short: 'Pre-booked transfer · driver waiting in arrivals with a name sign · ~45 min to apartment.', details: 'Menzel Travel Portugal. Driver has your flight details and tracks the flight, so EES delays are not a problem. After customs, look for the name sign in the arrivals hall. Tel: +351 21 131 9242.', booking: '+351 21 131 9242', booked: true, duration: '~45 min' },
+      { time: '', icon: 'taxi', title: 'Arrive at apartment, meet Batya', short: 'Late arrival after EES delays + transfer.', details: 'Whole family together for the first time on the trip. After the queue and the flight you will all be exhausted.' },
       { time: '', icon: 'hotel', title: 'Straight to bed', short: 'Save Lisbon nightlife for another evening — Day 1 starts slow.', details: 'After a 2–4 hour passport queue, a late-night flight and a taxi, you will be wiped out. Quattro Teste bar will keep.' },
     ]
   },
@@ -1020,20 +1025,22 @@ const DAYS = [
   // ============ DAY 6 ============
   {
     n: 6, date: 'Tue, May 19', dow: 'Tue', city: 'Douro Valley', title: 'Douro Valley · Birthday Day 🎂',
-    image: IMG.douro, pace: 'Scenic drive', tags: ['birthday', 'BBC top view', 'self-drive'],
-    summary: "Self-drive the famous N222 — voted one of the world's most beautiful roads. Pinhão azulejos, the BBC-top viewpoint at Casal de Loivos, tapas birthday lunch. Then back to Porto for the Antiqvvm birthday dinner.",
+    image: IMG.douro, pace: 'Scenic drive', tags: ['birthday', 'two routes', 'Douro N222'],
+    summary: "Self-drive the famous N222 — voted one of the world's most beautiful roads. Régua coffee, the N222 stretch, Pinhão azulejos and Rabelo boats — then choose on the spot: a Rabelo river cruise + birthday lunch at ÓPorco (Option A), or a scenic drive up to Favaios for a village-square lunch (Option B). Back to Porto for the Antiqvvm birthday dinner.",
     warning: "<strong>🎂 BATYA'S BIRTHDAY — celebratory dinner at Antiqvvm in the evening.</strong>",
     items: [
+      { time: '', icon: 'food', title: 'Breakfast at Confeitaria São Domínicos', short: '~5 min walk from hotel · 4.6★ from 955 reviews · beloved local pastry institution.', details: 'Opens 7:30 Tue ✅. Fresh OJ squeezed to order, pastel de nata, croissants, galão. ~€5–8/person.', address: 'Largo de São Domínicos 37, Porto', cost: '€5-8/person', rating: '4.6★' },
       { time: '', icon: 'drive', title: 'Depart Porto via A4 motorway eastward', short: 'Easy fast motorway out of the city.' },
-      { time: '', icon: 'food', title: 'Coffee + pastéis de nata in Peso da Régua', short: 'Riverside café · the gateway to the Douro Valley.', details: 'A short break before the famously beautiful stretch begins.' },
-      { time: '', icon: 'sight', title: 'Optional: Douro Museum (Museu do Douro)', short: 'History of the valley · river terrace.', details: 'Skippable if you want to maximize driving time. Worth 30 min if you like context.' },
-      { time: '', icon: 'drive', title: 'Drive the famous N222: Régua → Pinhão', short: '27 km scenic stretch · terraced vineyards on both sides · stop at brown miradouro signs.', details: "This stretch hugs the Douro River with terraced vineyards on both sides. Voted one of the world's most beautiful roads. In May, the valley is lush green.", image: IMG.douro, duration: '~45 min' },
-      { time: '', icon: 'sight', title: 'Pinhão village · azulejo train station', short: 'Beautiful tile panels depicting scenes from Douro Valley life · free.', details: 'Then stroll the riverfront, admire the Rabelo boats and the dramatic valley all around you.', cost: 'Free' },
-      { time: '', icon: 'taxi', title: 'Pre-arranged taxi up to Casal de Loivos', short: '~15 min ride · driver waits 20-30 min · then back down · ~€20-25 total.', details: "Park at the Pinhão riverside parking (flat, easy, free). Take a pre-arranged local taxi up — Dafna rides comfortably, no stress about the road.", warning: 'No Bolt or Uber in Pinhão — must use local taxi. Only 2-3 drivers. Book Taxis do Douro in advance: +351 964 440 235. Ask for round trip with 20-30 min wait. If self-driving instead: take N322-3 toward Alijó — do NOT follow Google Maps which sends you up a dangerous cobblestone track.', cost: '~€20-25' },
-      { time: '', icon: 'view', title: 'Miradouro de Casal de Loivos (492m)', short: 'BBC: one of the most beautiful views in the world.', details: 'The Douro curves far below, Pinhão village at your feet, wave after wave of terraced vineyards covering every slope. Small food truck on site with wine and plancha.', cost: 'Free entry', duration: '~30 min' },
-      { time: '', icon: 'birthday', title: '🎂 Birthday lunch — ÓPorco Wine & Tapas Bar', short: 'Charming one-man tapas bar run by Jorge · sharing platters · light by design.', details: 'Local cheeses, hams, olives, bread, house salad, famous orange salad with sea salt and olive oil. Casual and genuine. Perfect before the big dinner tonight. Opens 12:30, closed weekends — Tuesday ✅. Very small.', address: 'Rua António Manuel Saraiva 65A, Pinhão', booking: 'Call ahead: +351 254 096 760', cost: '~€10-15/person' },
-      { time: '', icon: 'drive', title: 'Drive back to Porto via A4/IP4', short: '~1.5 hours.', duration: '~1.5h' },
-      { time: '', icon: 'hotel', title: 'Arrive Porto · freshen up at hotel', short: 'Reset for the surprise dinner.' },
+      { time: '', icon: 'food', title: 'Coffee + pastéis de nata in Peso da Régua', short: 'Riverside café · gateway to the Douro Valley · view over the bridge.', details: 'Quick coffee and pastel de nata at a riverside café. Enjoy the view over the Douro bridge and the start of the wine country. Optional: peek into Museu do Douro (free exterior, river terrace).' },
+      { time: '', icon: 'drive', title: 'Drive the famous N222: Régua → Pinhão', short: "27 km · voted one of the world's most beautiful drives · terraced vineyards on both sides.", details: "The road hugs the Douro with terraced vineyards on both sides. Stop at brown 'miradouro' signs as you go. In May the valley is lush green.", image: IMG.douro, duration: '~45 min' },
+      { time: '', icon: 'sight', title: 'Arrive Pinhão · azulejo station + riverfront', short: 'Park at the riverside parking (flat, free) · azulejo-tiled train station · stroll the riverfront · Rabelo boats moored on the Douro.', details: "Free parking at the riverside. The train station's azulejo panels depict scenes from Douro Valley life. The Rabelo boats are the traditional wooden boats that transported port wine barrels down the Douro.", cost: 'Free' },
+      { time: '', icon: 'sight', title: '🔀 Decision Point · River cruise or scenic drive', short: 'Decide on the spot in Pinhão. Both options arrive Porto ~15:00–15:30, plenty of time before the dinner.', details: "Option A — River Cruise: walk to Cais Fluvial do Pinhão, take the 11:30 Rabelo-boat cruise (~€15/pp, no booking) → birthday lunch at ÓPorco → drive back via scenic N322-3.<br><br>Option B — Scenic Drive: depart Pinhão by 11:30 north on N322-3 to Vale de Mendiz, miradouros along the way → Favaios hilltop village (Moscatel wine country) → simple village-square lunch → drive back via Alijó." },
+      { time: '', icon: 'view', title: 'Option A · Rabelo boat river cruise from Pinhão', short: 'Walk to Cais Fluvial do Pinhão · check for the 11:30 Douro Tours departure · 50-min cruise · ~€15/person · no pre-booking.', details: 'Just walk up. Completely relaxed, spectacular views of the terraced vineyards from the water, guide on board. Return by ~12:30, then walk 5 min to ÓPorco for birthday lunch.', cost: '~€15/person', duration: '50 min' },
+      { time: '', icon: 'birthday', title: 'Option A · 🎂 Birthday lunch — ÓPorco Wine & Tapas Bar', short: 'Charming one-man tapas bar run by Jorge · sharing platters · light by design.', details: "Local cheeses, hams, olives, bread, house salad, famous orange salad with sea salt and olive oil. Casual and genuine. Opens 12:30, closed weekends — Tuesday ✅. Very small. After lunch, drive N322-3 northward (scenic road toward Alijó with roadside viewpoints) → Alijó → A4 → Porto. Arrive Porto ~15:30.", address: 'Rua António Manuel Saraiva 65A, Pinhão', booking: 'Call ahead: +351 254 096 760', cost: '~€10-15/person' },
+      { time: '', icon: 'drive', title: 'Option B · Scenic drive · N322-3 toward Vale de Mendiz', short: 'Depart Pinhão by 11:30 · climb through wave after wave of terraced vineyards · pull over at roadside miradouros.', details: 'One of the most spectacular drives in the valley. Just stop the car at roadside miradouros — zero stress. Continue to Favaios (~20 min).', duration: '~20 min' },
+      { time: '', icon: 'view', title: 'Option B · Favaios · hilltop village (Moscatel wine country)', short: 'Charming hilltop village · famous for Moscatel wine · quiet village square.', details: 'Stop in Favaios for a stretch and a wander. The village square has a few simple cafés serving local food.' },
+      { time: '', icon: 'birthday', title: 'Option B · 🎂 Birthday lunch at Favaios village square', short: 'Simple village café in the square · local cooking · no reservations needed · ~12:30.', details: 'Local cooking in the village square. Casual, genuine, light by design — perfect before the big dinner tonight. After lunch, continue Alijó → A4 → Porto. Arrive Porto ~15:00.' },
+      { time: '', icon: 'hotel', title: 'Arrive Porto · freshen up at hotel', short: 'Park at hotel · plenty of time before the evening dinner.', details: 'Option A arrives ~15:30, Option B ~15:00. Either way, plenty of time before Antiqvvm at 19:30.' },
       { time: '19:30', icon: 'birthday', title: '🎂 Birthday Dinner · Antiqvvm', short: 'Michelin-starred · panoramic Porto and Douro views from the Romantic Museum gardens.', details: 'BOOKED. One of the most spectacular settings in Porto — set in the gardens of the Romantic Museum, overlooking the city and the Douro.', booked: true },
     ]
   },
@@ -1170,6 +1177,7 @@ const practicalCards = [
       { name: 'Coimbra · Hotel Vitória', detail: 'May 16 · 1 night · Rua da Sota 13, old town' },
       { name: 'Porto · Mouzinho Village River', detail: 'May 17-20 · 3 nights · parking included' },
       { name: 'Hertz car · Lisbon Airport', detail: 'May 16 pickup · May 20 return · request Via Verde' },
+      { name: 'Private transfer · Menzel Travel', detail: 'May 13 evening · Lisbon airport pickup · +351 21 131 9242' },
       { name: 'Sintra Tour · Eden Tison', detail: 'May 15 · 10:30-17:30 · €120/person · Hebrew-speaking guide' },
       { name: 'Eating Europe Culinary Tour', detail: 'May 14 · 17:30-21:00 · via Viator' },
       { name: 'Jerónimos Monastery', detail: 'May 14 · 12:30 entry' },
@@ -1186,8 +1194,7 @@ const practicalCards = [
       { name: 'Duval, Manteigas', detail: 'May 17 mountain lunch · call ahead +351 968 743 857' },
       { name: 'Ribeira Square, Porto', detail: 'May 17 dinner · open Sun from 18:00 · arrive ~19:00' },
       { name: 'Cantina 32 Porto', detail: 'May 18 dinner · +351 22 203 9069 or TheFork' },
-      { name: 'ÓPorco Wine & Tapas, Pinhão', detail: 'May 19 birthday lunch · +351 254 096 760' },
-      { name: 'Taxis do Douro, Pinhão', detail: 'May 19 · round-trip Casal de Loivos · +351 964 440 235' },
+      { name: 'ÓPorco Wine & Tapas, Pinhão', detail: 'May 19 birthday lunch · +351 254 096 760 · only if Option A' },
     ]
   },
   {
@@ -1226,7 +1233,6 @@ const practicalCards = [
       { name: 'Belém Tower closed', detail: 'Under renovation · exterior only' },
       { name: 'Maria da Mouraria · CASH ONLY', detail: 'No card payments accepted at fado dinner' },
       { name: 'Joanina Library', detail: 'No photography on Noble Floor' },
-      { name: 'Pinhão taxi', detail: 'No Uber/Bolt — must book local taxi in advance' },
     ]
   },
 ];

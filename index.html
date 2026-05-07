@@ -822,7 +822,8 @@ const ITEM_MAPS = {
   'Drive to Torre summit (1,993m)': 'Torre, Serra da Estrela',
   "Glacial valley · Covão d'Ametade": "Covão d'Ametade, Manteigas",
   "🦶 Optional hike · Covão d'Ametade loop": "Covão d'Ametade, Manteigas",
-  'Arrive Porto · check in at Mouzinho Village River': 'Mouzinho Village River, Porto',
+  'Arrive Porto · drop luggage at Mouzinho Village River': 'Mouzinho Village River, Porto',
+  'Park at SABA Cardosas · collect multi-entry card': 'SABA Cardosas, Rua Trindade Coelho 16, Porto',
   'Walk down Mouzinho da Silveira to the Ribeira waterfront': 'Cais da Ribeira, Porto',
   // Day 5
   'São Bento Station': 'Estação de São Bento, Porto',
@@ -842,10 +843,11 @@ const ITEM_MAPS = {
   'Option B · Favaios · hilltop village (Moscatel wine country)': 'Favaios, Alijó, Portugal',
   'Option B · 🎂 Birthday lunch at Favaios village square': 'Favaios, Alijó, Portugal',
   'Stop at Mercadona Penafiel · breakfast shopping': 'Mercadona Penafiel, Rua Nova de Chãos 294, Milhundos',
-  'Arrive Porto · freshen up at hotel': 'Mouzinho Village River, Porto',
+  'Arrive Porto · drop luggage · re-park at SABA Cardosas': 'SABA Cardosas, Rua Trindade Coelho 16, Porto',
   '🎂 Birthday Dinner · Antiqvvm': 'Antiqvvm, Porto',
   // Day 7
-  'Check out · load car · depart Porto south': 'Mouzinho Village River, Porto',
+  'Check out · Aviv walks to SABA Cardosas to fetch the car': 'SABA Cardosas, Rua Trindade Coelho 16, Porto',
+  'Load car · depart Porto south': 'Mouzinho Village River, Porto',
   'Mata Nacional do Buçaco': 'Mata Nacional do Buçaco',
   'Explore the forest (~1h 45min)': 'Mata Nacional do Buçaco',
   'Arrive Óbidos · free car park by the aqueduct': 'Aqueduto de Óbidos',
@@ -904,8 +906,8 @@ const STAYS = [
     address: 'Porto',
     dates: 'May 17 – 20',
     image: IMG.porto,
-    details: 'Includes parking — handy with the rental car. River-adjacent location for the Porto, Douro Valley, and final-night birthday-dinner days.',
-    perks: ['Parking included', 'River-side location', 'Walking distance to Ribeira']
+    details: 'River-adjacent location for the Porto, Douro Valley, and final-night birthday-dinner days. Parking pre-booked via Parclick at SABA Cardosas (Rua Trindade Coelho 16, ~10 min walk from hotel) — ref VWMN26W, valid 17/05 16:00 – 20/05 16:00. Multi-entry card collected from the SABA control booth on arrival.',
+    perks: ['Parking at SABA Cardosas (Parclick)', 'River-side location', 'Walking distance to Ribeira']
   },
 ];
 
@@ -1009,7 +1011,8 @@ const DAYS = [
       { time: '', icon: 'walk', title: "🦶 Optional hike · Covão d'Ametade loop", short: 'Easy 1km loop · 22m elevation · 30–60 min · birch forest along the Zêzere river.', details: 'Decide on the spot. AllTrails Easy. Flat, well-marked path through birch forest along the Zêzere river. No gear needed beyond comfortable shoes. Can extend upstream to two small glacial lakes for ~1.5 hrs total if everyone is happy. No booking, no cost. If you do the hike, lunch in Manteigas shifts later.', duration: '30–60 min' },
       { time: '', icon: 'food', title: 'Lunch at Duval, Manteigas', short: 'Top spot in Manteigas · 4.5★ from 1,270 reviews · outdoor hillside seating · mountain comfort food.', details: 'Casual and warm, outdoor seating on the hillside. Mountain comfort food. Open Sun 12:00–15:00 ✅.', address: 'N232, Manteigas', booking: 'Call ahead: +351 968 743 857', rating: '4.5★' },
       { time: '', icon: 'drive', title: 'Depart Manteigas → Porto', short: 'A25/A1 · ~2.5 hours.', duration: '~2.5h' },
-      { time: '', icon: 'hotel', title: 'Arrive Porto · check in at Mouzinho Village River', short: 'Park in the hotel garage · settle in · freshen up before walking down to the river.', details: 'Parking is included. Check in, drop bags, freshen up before walking down to the Ribeira for first impressions and dinner.' },
+      { time: '', icon: 'hotel', title: 'Arrive Porto · drop luggage at Mouzinho Village River', short: 'Drop bags with Dafna and Batya at the hotel entrance · Aviv heads on to park.', details: 'Pull up to the hotel entrance, drop Dafna, Batya and all the luggage. Aviv continues to the SABA Cardosas car park to drop the car for the rest of the Porto stay.' },
+      { time: '', icon: 'drive', title: 'Park at SABA Cardosas · collect multi-entry card', short: 'Rua Trindade Coelho 16 · Parclick ref VWMN26W · ~10 min walk back to hotel.', details: 'Take a ticket on entry as usual. After parking, bring the Parclick voucher and the ticket to the control booth — staff will issue a multi-entry card good for the whole stay (valid 17/05 16:00 – 20/05 16:00). Walk back to the hotel (~10 min) to join Dafna and Batya, then check in and freshen up before walking down to the Ribeira.', address: 'SABA Cardosas, Rua Trindade Coelho 16, Porto', booking: 'Parclick ref VWMN26W · 17/05 16:00 – 20/05 16:00', booked: true },
       { time: '', icon: 'walk', title: 'Walk down Mouzinho da Silveira to the Ribeira waterfront', short: 'All downhill · ~18 min straight to Cais da Ribeira · first impression of Porto.', details: 'Walk south on Rua de Mouzinho da Silveira straight to the waterfront. Cais da Ribeira, Dom Luís I Bridge overhead, Gaia bank across the river. Take it in slowly. Return after dinner by Bolt (~5 min, ~€4–5).', duration: '~18 min' },
       { time: '', icon: 'food', title: 'Dinner at Ribeira Square', short: "Right on the waterfront square · 4.7★ from 3,200+ reviews · garlic prawns, seafood rice, black pasta.", details: 'Relaxed riverside atmosphere on Praça Ribeira. Open Sundays from 18:00. Arrive around 19:00 before it fills up.', address: 'Praça Ribeira 16, Porto', rating: '4.7★' },
     ]
@@ -1053,7 +1056,7 @@ const DAYS = [
       { time: '', icon: 'view', title: 'Option B · Favaios · hilltop village (Moscatel wine country)', short: 'Charming hilltop village · famous for Moscatel wine · quiet village square.', details: 'Stop in Favaios for a stretch and a wander. The village square has a few simple cafés serving local food.' },
       { time: '', icon: 'birthday', title: 'Option B · 🎂 Birthday lunch at Favaios village square', short: 'Simple village café in the square · local cooking · no reservations needed · ~12:30.', details: 'Local cooking in the village square. Casual, genuine, light by design — perfect before the big dinner tonight. After lunch, continue Alijó → A4 → Porto.' },
       { time: '', icon: 'shop', title: 'Stop at Mercadona Penafiel · breakfast shopping', short: 'A4 junction 12 · large supermarket, 145 spaces · 20–30 min · open till 21:30 daily.', details: "Right at the A4 junction, easy in/out. Large supermarket opened April 2025. Buy breakfast ingredients for tomorrow morning in the apartment — last day starts early so we'll skip a café and eat in.", address: 'Rua Nova de Chãos 294, Milhundos', duration: '20–30 min' },
-      { time: '', icon: 'hotel', title: 'Arrive Porto · freshen up at hotel', short: 'Park at hotel · plenty of time before the evening dinner.', details: 'Arrival around 16:00 after the supermarket stop. Plenty of time before Antiqvvm at 19:30.' },
+      { time: '', icon: 'hotel', title: 'Arrive Porto · drop luggage · re-park at SABA Cardosas', short: 'Drop Dafna and Batya with luggage at hotel · Aviv re-parks at SABA Cardosas (multi-entry card).', details: 'Drop Dafna and Batya with all the luggage at the hotel entrance. Aviv drives back to SABA Cardosas — the multi-entry card collected on arrival day lets you straight back in. Walk back to hotel (~10 min), freshen up — plenty of time before Antiqvvm at 19:30.', address: 'SABA Cardosas, Rua Trindade Coelho 16, Porto' },
       { time: '19:30', icon: 'birthday', title: '🎂 Birthday Dinner · Antiqvvm', short: 'Michelin-starred · panoramic Porto and Douro views from the Romantic Museum gardens.', details: 'BOOKED. One of the most spectacular settings in Porto — set in the gardens of the Romantic Museum, overlooking the city and the Douro.', booked: true },
     ]
   },
@@ -1064,7 +1067,8 @@ const DAYS = [
     summary: "Apartment breakfast at dawn, then south to Buçaco's enchanted forest and a long Óbidos lunch inside the medieval walls. Drop Batya at the airport for her Air Transat flight to Toronto, then a golden-hour wander at Parque das Nações before Aviv & Dafna's El Al flight to Tel Aviv at 22:15.",
     items: [
       { time: '7:00', icon: 'food', title: 'Breakfast in the apartment', short: 'Ingredients bought yesterday at Mercadona · relaxed, no queues, no walking out.', details: 'Last quiet morning together before the day-long goodbye marathon. Coffee, pastries, fruit — whatever you grabbed at Mercadona.' },
-      { time: '8:00', icon: 'drive', title: 'Check out · load car · depart Porto south', short: 'A1 motorway · 100 km, ~1h 15min to Buçaco.' },
+      { time: '8:00', icon: 'hotel', title: 'Check out · Aviv walks to SABA Cardosas to fetch the car', short: 'Dafna and Batya wait at hotel entrance with all the luggage · Aviv walks ~10 min to retrieve the car.', details: 'Dafna and Batya stay at the hotel entrance with all the luggage. Aviv walks to SABA Cardosas (~10 min), uses the multi-entry card to exit, and drives back to the hotel entrance to pick everyone up.', address: 'SABA Cardosas, Rua Trindade Coelho 16, Porto' },
+      { time: '', icon: 'drive', title: 'Load car · depart Porto south', short: 'A1 motorway · 100 km, ~1h 15min to Buçaco.' },
       { time: '', icon: 'sight', title: 'Mata Nacional do Buçaco', short: 'Enchanted forest · car entry €5 · park near the Palace Hotel.', details: 'Moss-covered paths, ancient cedars and 700+ exotic species, hidden grottoes and chapels.', image: IMG.bucaco, cost: '€5 car entry' },
       { time: '', icon: 'walk', title: 'Explore the forest (~1h 45min)', short: 'Fonte Fria cascade · Via Sacra · Cruz Alta viewpoint · Palace Hotel exterior.', details: 'Highlights: Fonte Fria cascade (144 stone steps), Via Sacra, Cruz Alta viewpoint (549m, views to Serra da Estrela and the Atlantic on a clear day). Palace Hotel do Buçaco exterior — neo-Manueline architecture by the same architect as Quinta da Regaleira in Sintra. Carmelite monastery cloisters (€2/person). No pre-booking needed.', cost: '€2 cloisters', duration: '~1h 45min' },
       { time: '', icon: 'drive', title: 'Depart Buçaco → Óbidos', short: 'A1/A8 · ~1h 35min, 145 km.', duration: '~1h 35min' },
